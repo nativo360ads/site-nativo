@@ -6,7 +6,6 @@
 <title>Nativo 360 Digital Ads | Marketing Digital</title>
 <meta name="description" content="Nativo 360 Digital Ads. Estratégia, criatividade, tráfego pago, social media e soluções digitais para empresas.">
 <meta name="theme-color" content="#020807">
-<!-- Removidos os preloads de imagens para não bloquear o carregamento do texto principal no mobile -->
 
 <style>
 :root{
@@ -24,7 +23,6 @@ body{
  overflow-x:hidden;
  -webkit-font-smoothing:antialiased
 }
-/* Fundo otimizado para não pesar no processamento mobile */
 body::before{
  content:"";
  position:fixed;
@@ -39,61 +37,12 @@ a{text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
 img{display:block;max-width:100%}
 button{font-family:inherit;-webkit-tap-highlight-color:transparent}
 
-/* Centraliza estilo "Web App" com limite de 500px para foco total mobile */
 .container{width:calc(100% - 40px);max-width:500px;margin:auto}
-
-/* HEADER */
-header{
- position:sticky;
- top:0;
- z-index:1000;
- height:72px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 20px;
- background:rgba(2,7,6,.85);
- backdrop-filter:blur(12px);
- -webkit-backdrop-filter:blur(12px);
- border-bottom:1px solid rgba(255,255,255,.07)
-}
-.brand{font-size:18px;font-weight:900;letter-spacing:1px}
-.brand span{color:var(--verde)}
-.menu-button{
- width:45px;height:45px;
- border:0;background:transparent;
- color:white;font-size:32px;cursor:pointer
-}
-.mobile-menu{
- position:fixed;
- top:72px;left:0;right:0;
- z-index:999;
- padding:12px 20px 20px;
- background:rgba(2,7,6,.98);
- border-bottom:1px solid var(--borda);
- visibility:hidden;
- opacity:0;
- transform:translateY(-10px);
- pointer-events:none;
- transition:all .25s ease
-}
-.mobile-menu.open{
- visibility:visible;
- opacity:1;
- transform:translateY(0);
- pointer-events:auto
-}
-.mobile-menu a{
- display:block;
- padding:18px 5px;
- font-weight:700;
- border-bottom:1px solid rgba(255,255,255,.08)
-}
 
 /* HERO */
 .hero{
  position:relative;
- min-height:calc(100svh - 72px);
+ min-height:100svh;
  display:flex;
  align-items:center;
  padding:40px 0;
@@ -263,7 +212,7 @@ header{
 .service-card h3{margin-top:16px;font-size:20px}
 .service-card p{margin-top:8px;color:var(--cinza);line-height:1.4;font-size:14px}
 
-/* CLIENTES (CARROSSEL OTIMIZADO) */
+/* CLIENTES (CARROSSEL) */
 .clients-section{
  padding:50px 0;
  overflow:hidden;
@@ -331,7 +280,7 @@ footer{
  border-top:1px solid rgba(255,255,255,.06)
 }
 
-/* WHATSAPP (Ajustado p/ Mobile) */
+/* WHATSAPP */
 .whatsapp{
  position:fixed;
  right:15px;
@@ -362,19 +311,6 @@ footer{
 </head>
 
 <body>
-
-<header>
- <a class="brand" href="#inicio">NATIVO <span>360°</span></a>
- <button class="menu-button" id="menuButton" aria-label="Abrir menu" aria-expanded="false">☰</button>
-</header>
-
-<nav class="mobile-menu" id="mobileMenu">
- <a href="#inicio">Início</a>
- <a href="#sobre">Quem somos</a>
- <a href="#servicos">Serviços</a>
- <a href="#clientes">Clientes</a>
- <a href="#contato">Contato</a>
-</nav>
 
 <main>
 
@@ -479,7 +415,6 @@ footer{
  </div>
  <div class="clients-track-wrapper">
   <div class="clients-track">
-   <!-- Uso de loading="lazy" é fundamental aqui -->
    <div class="client"><img src="1.png" alt="Cliente" loading="lazy" decoding="async"></div>
    <div class="client"><img src="2.png" alt="Cliente" loading="lazy" decoding="async"></div>
    <div class="client"><img src="3.png" alt="Cliente" loading="lazy" decoding="async"></div>
@@ -568,25 +503,7 @@ footer{
 </a>
 
 <script>
-/* JS Otimizado */
 document.getElementById("year").textContent=new Date().getFullYear();
-
-const menuButton=document.getElementById("menuButton");
-const mobileMenu=document.getElementById("mobileMenu");
-
-menuButton.addEventListener("click",()=>{
- const aberto=mobileMenu.classList.toggle("open");
- menuButton.setAttribute("aria-expanded",aberto);
- menuButton.textContent=aberto?"×":"☰";
-});
-
-document.querySelectorAll(".mobile-menu a").forEach(link=>{
- link.addEventListener("click",()=>{
-  mobileMenu.classList.remove("open");
-  menuButton.textContent="☰";
-  menuButton.setAttribute("aria-expanded","false");
- });
-});
 
 if("IntersectionObserver" in window){
  const observer=new IntersectionObserver(entries=>{
@@ -622,7 +539,6 @@ if("IntersectionObserver" in window){
  document.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible"));
 }
 
-/* Otimização de Processamento (Para a animação do carrossel em segundo plano) */
 document.addEventListener("visibilitychange",()=>{
  const track=document.querySelector(".clients-track");
  if(track) track.style.animationPlayState = document.hidden ? "paused" : "running";
